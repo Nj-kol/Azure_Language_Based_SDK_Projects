@@ -1,0 +1,22 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: flask-product-api
+spec:
+  selector:
+    matchLabels:
+      app: flask-product-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: flask-product-api
+    spec:
+      containers:
+        - name: flask-product-api
+          image: njkolcontainerregistry.azurecr.io/flask_product_api
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+---
+
